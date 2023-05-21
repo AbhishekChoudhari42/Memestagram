@@ -6,6 +6,7 @@ import { AuthContext } from "./AuthContext"
 import { useContext, useState } from "react"
 import axios from 'axios'
 import {IoIosArrowDropdownCircle,IoIosSend} from 'react-icons/io'
+import {BsPersonFillAdd} from 'react-icons/bs'
 import CommentArea from "./CommentArea"
 const Post = ({post}) => {
 const {user} = useContext(AuthContext)
@@ -78,7 +79,7 @@ const likePost = async (userId,postId) =>{
 
         {<div className={`absolute border-t-2 w-[100%] h-[70%] max-h-[300px] left-0 bg-[#fff] p-2 rounded-xl comment ${(comment?'comment-up':'comment-down')}`}>
             
-            <div onClick={()=>{setComment(false)}} className="w-[72px] h-[36px] left-[50%] z-20 translate-x-[-50%] rounded-lg absolute bg-white  top-[-15px] border-2 flex  items-center justify-center p-1 mb-1 cursor-pointer"><IoIosArrowDropdownCircle size={24} color="#222" /></div>
+            <div onClick={()=>{setComment(false)}} className="w-[42px] h-[32px] left-[50%] z-20 translate-x-[-50%] rounded-lg absolute bg-white  top-[-12px] border-2 flex  items-center justify-center p-1 mb-1 cursor-pointer"><IoIosArrowDropdownCircle size={20} color="#222" /></div>
 
             <div className='w-full flex rounded-md border-t-2 left-0 p-2 bg-white z-40 absolute bottom-[0%]'>
                 <input onChange={(e)=>{handleComment(e)}}  value={commentText.text} className="p-1 px-2 rounded-md w-full border-2 outline-none" placeholder="input"/>
@@ -91,10 +92,16 @@ const likePost = async (userId,postId) =>{
 
         {/* comment */}
 
-        <div className="flex items-center mb-2">
+        <div className="flex justify-between items-center mb-2">
+        <div className="flex items-center">
             <img className="w-6 h-6 rounded-full" src='/vite.svg' />
             <h2 className="font-bold text-lg ml-2">{post.username}</h2>
         </div>
+            <div className="bg-neutral-200 p-[0.4rem] rounded-full">
+            <BsPersonFillAdd color="#222" size="18"/>
+            </div>
+        </div>
+
         <div className="w-full max-h-[400px] flex justify-center  rounded-lg bg-slate-200">
             <img className=" max-h-[400px] rounded-lg" src = {post.imageURL}/>
         </div>

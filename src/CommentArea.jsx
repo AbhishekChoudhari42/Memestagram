@@ -36,8 +36,8 @@ const CommentArea = (props) =>{
     if(commentsData){
         return <div className='relative pb-[200px] w-[100%] h-fit max-h-[300px] overflow-y-scroll'>
                 
-                {commentsData && commentsData.map((content,index)=>{
-                     return <Comment key={index} content={content} />
+                {commentsData && commentsData.map((comment,index)=>{
+                     return <Comment key={index} comment={comment} />
                 })}
                     
               

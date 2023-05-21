@@ -47,7 +47,7 @@ const Login = () => {
     
   }
   return  <div className="bg-blue-500 pt-10 w-screen h-screen flex justify-center items-center">
-                {user && <Navigate to='/feed'/>}
+                {user && <Navigate to='/home/feed'/>}
                 <form className='w-[320px] p-4 bg-white rounded-lg'>
                     <h2 className='text-lg font-bold'>Login 🤖👀</h2>
                     <div className='mt-6 relative w-[100%] h-10 bg-slate-200'>

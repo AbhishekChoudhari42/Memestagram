@@ -11,6 +11,7 @@ import CreatePostModal from './CreatePostModal';
 import { useState } from 'react';
 
 import Home from './Home';
+import Feed from './Feed';
 
 function App() {
 
@@ -23,8 +24,16 @@ function App() {
       element: <Login />,
     },
     {
-      path: "/feed",
+      path: "/home",
       element: <Home postUploaded={postUploaded} />,
+      children:[
+        {
+          path:"/home/feed",
+          element:<Feed/>
+        }
+      ]
+      
+      
     },
     {
       path: "/register",
