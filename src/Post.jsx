@@ -40,11 +40,15 @@ const addComment = () => {
 
   
 const likePost = async (userId,postId) =>{
-        
+    let action = like.status?'unlike':'like'
+
     try{
             if(user?.userAccessToken){
-            
-            let action = like.status?'unlike':'like'
+                    
+            setLike(
+                {   status:!like.status,
+                    noOfLikes: action == 'like'? like.noOfLikes + 1 : like.noOfLikes - 1 
+                })
                         
             await axios.put(`${import.meta.env.VITE_BASEURL}post/likepost/${action}`,
             {
@@ -60,7 +64,10 @@ const likePost = async (userId,postId) =>{
             }            
         }
         catch(error){
+
+            setLike({status : post.likes.includes(user.userId), noOfLikes:post.likes?.length})
             console.log(error)
+            
         }
   }
 
