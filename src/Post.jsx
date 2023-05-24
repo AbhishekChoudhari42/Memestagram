@@ -12,6 +12,7 @@ const Post = ({post}) => {
 const {user} = useContext(AuthContext)
 
 const [like,setLike] = useState({status : post.likes.includes(user.userId), noOfLikes:post.likes?.length})
+const [haltLike,setHaltLike] = useState(false)
 const [caption,setCaption] = useState(false)
 const [comment,setComment] = useState(false)
 const [commentText,setCommentText] = useState({text:'',reload:false})
@@ -42,8 +43,11 @@ const addComment = () => {
   
 const likePost = async (userId,postId) =>{
     let action = like.status?'unlike':'like'
-
+    if(!haltLike){
+        
     try{
+            setHaltLike(true)
+
             if(user?.userAccessToken){
                     
             setLike(
@@ -61,15 +65,17 @@ const likePost = async (userId,postId) =>{
             )
             .then((response)=>{    
                 setLike({status:!like.status,noOfLikes:response.data.likes})
+                setHaltLike(false)
             })
             }            
         }
         catch(error){
 
             setLike({status : post.likes.includes(user.userId), noOfLikes:post.likes?.length})
-            console.log(error)
-            
+            setHaltLike(false)            
         }
+
+    }
   }
 
   return (
